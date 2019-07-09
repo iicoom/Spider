@@ -44,21 +44,71 @@ myDB.connect()
 # url='https://www.zhipin.com/i100020-c101010100/e_108/?page=2&ka=page-2' 北京
 # url='https://www.zhipin.com/i100020-c101020100/e_108/?page=2&ka=page-2' 上海
 # url='https://www.zhipin.com/i100020-c101280600/e_108/?page=2&ka=page-2' 深圳
+# url='https://www.zhipin.com/i100020-c101030100/e_108/?ka=sel-city-101030100' 天津
+# url='https://www.zhipin.com/i100020-c101190100/e_108/?ka=sel-exp-108'  南京
+# url='https://www.zhipin.com/i100020-c101210100/e_108/?ka=sel-city-101210100' 杭州
+# url='https://www.zhipin.com/i100020-c101200100/e_108/?ka=sel-city-101200100' 武汉
+# url='https://www.zhipin.com/i100020-c101230200/e_108/?ka=sel-city-101230200' 厦门
+# url='https://www.zhipin.com/i100020-c101040100/e_108/?ka=sel-exp-108' 重庆
+# url='https://www.zhipin.com/i100020-c101070100/e_108/?ka=sel-exp-108' 沈阳
+# url='https://www.zhipin.com/i100020-c101060100/e_108/?ka=sel-exp-108' 长春
+# url='https://www.zhipin.com/i100020-c101180100/e_108/?ka=sel-exp-108' 郑州
+# url='https://www.zhipin.com/i100020-c101110100/e_108/?ka=sel-exp-108' 西安
+# url='https://www.zhipin.com/i100020-c101120100/e_108/?ka=sel-exp-108' 济南
+# url='https://www.zhipin.com/i100020-c101190400/e_108/?ka=sel-exp-108' 苏州
+# url='https://www.zhipin.com/i100020-c101270100/e_108/?ka=sel-exp-108' 成都
+# url='https://www.zhipin.com/i100020-c101120200/e_108/?ka=sel-exp-108' 青岛
+# url='https://www.zhipin.com/i100020-c101070200/e_108/?ka=sel-exp-108' 大连
+# url='https://www.zhipin.com/i100020-c101250100/e_108/?ka=sel-city-101250100' 长沙
 
-########## 在线教育 ############################################################
+
+########## 在线教育 i100012-c101010100 ############################################################
 # url='https://www.zhipin.com/i100012-c101010100/e_108/?page=2&ka=page-2' 北京
 # url='https://www.zhipin.com/i100012-c101020100/e_108/?page=1&ka=page-1' 上海
 # url='https://www.zhipin.com/i100012-c101280600/e_108/?ka=sel-city-101280600' 深圳
+# url='https://www.zhipin.com/i100012-c101030100/e_108/?ka=sel-city-101030100' 天津
+# url='https://www.zhipin.com/i100012-c101190100/e_108/?ka=sel-exp-108' 南京
+# url='https://www.zhipin.com/i100012-c101210100/e_108/?ka=sel-city-101210100' 杭州
+# url='https://www.zhipin.com/i100012-c101200100/e_108/?ka=sel-city-101200100' 武汉
+# url='https://www.zhipin.com/i100012-c101200100/e_108/?ka=sel-city-101230200' 厦门
+# url='https://www.zhipin.com/i100012-c101040100/e_108/?ka=sel-exp-108' 重庆
+# url='https://www.zhipin.com/i100012-c101070100/e_108/?ka=sel-exp-108' 沈阳
+# url='https://www.zhipin.com/i100012-c101180100/e_108/?ka=sel-exp-108' 郑州
+# url='https://www.zhipin.com/i100012-c101110100/e_108/?ka=sel-exp-108' 西安
+# url='https://www.zhipin.com/i100012-c101120100/e_108/?ka=sel-exp-108' 济南
+# url='https://www.zhipin.com/i100012-c101190400/e_108/?ka=sel-city-101190400' 苏州
+# url='https://www.zhipin.com/i100012-c101270100/e_108/?ka=sel-city-101270100' 成都
+# url='https://www.zhipin.com/i100012-c101120200/e_108/?ka=sel-exp-108' 青岛
+# url='https://www.zhipin.com/i100012-c101070200/e_108/?ka=sel-exp-108' 大连
+# url='https://www.zhipin.com/i100012-c101250100/e_108/?ka=sel-city-101250100'
+
 
 ########## 互联网金融 ############################################################
 # url='https://www.zhipin.com/i100206-c101010100/e_108/?page=1&ka=page-1' 北京
 # url='https://www.zhipin.com/i100206-c101020100/e_108/?page=1&ka=page-1'  上海
 # url='https://www.zhipin.com/i100206-c101280600/e_108/?ka=sel-city-101280600' 深圳
+# url='https://www.zhipin.com/i100206-c101210100/e_108/?ka=sel-city-101210100' 杭州
+# url='https://www.zhipin.com/i100206-c101030100/e_108/?ka=sel-city-101030100' 天津
+# url='https://www.zhipin.com/i100206-c101270100/e_108/?ka=sel-city-101270100'
+# url='https://www.zhipin.com/i100206-c101040100/e_108/?ka=sel-exp-108' 重庆
+# url='https://www.zhipin.com/i100206-c101180100/e_108/?ka=sel-exp-108' 郑州
+# url='https://www.zhipin.com/i100206-c101110100/e_108/?ka=sel-exp-108' 西安
+# url='https://www.zhipin.com/i100206-c101120100/e_108/?ka=sel-exp-108' 济南
+# url='https://www.zhipin.com/i100206-c101190400/e_108/?ka=sel-exp-108' 苏州
+# url='https://www.zhipin.com/i100206-c101270100/e_108/?ka=sel-city-101270100' 成都
+# url='https://www.zhipin.com/i100206-c101070200/e_108/?ka=sel-exp-108' 大连
+
 
 ########## 媒体 ############################################################
 # url='https://www.zhipin.com/i100003-c101010100/e_108/?ka=sel-exp-108'
 # url='https://www.zhipin.com/i100003-c101020100/e_108/?ka=sel-city-101020100'
 # url='https://www.zhipin.com/i100003-c101280100/e_108/?ka=sel-city-101280100'
+# url='https://www.zhipin.com/i100003-c101270100/e_108/?ka=sel-city-101270100'
+# url='https://www.zhipin.com/i100003-c101030100/e_108/?ka=sel-exp-108' 天津
+# url='https://www.zhipin.com/i100003-c101180100/e_108/?ka=sel-exp-108' 郑州
+# url='https://www.zhipin.com/i100003-c101110100/e_108/?ka=sel-exp-108' 西安
+# url='https://www.zhipin.com/i100003-c101270100/e_108/?ka=sel-city-101270100' 成都
+# url='https://www.zhipin.com/i100003-c101070200/e_108/?ka=sel-exp-108' 大连
 
 url=''
 
