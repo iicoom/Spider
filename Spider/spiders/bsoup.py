@@ -1,3 +1,4 @@
+import time
 import requests
 from bs4 import BeautifulSoup
 
@@ -67,7 +68,7 @@ html_doc = """
    <div class="info-company">
     <div class="company-text">
      <h3 class="name">
-      <a href="/gongsi/2e64a887a110ea9f1nRz.html" ka="search_list_company_1_custompage" target="_blank">
+      <a href="/company/2e64a887a110ea9f1nRz.html" ka="search_list_company_1_custompage" target="_blank">
        腾讯
       </a>
      </h3>
@@ -128,19 +129,19 @@ html_doc = """
 """
 2. 豆瓣电影
 """
-html = requests.get('https://movie.douban.com/top250?start=0')
+# html = requests.get('https://movie.douban.com/top250?start=0')
 # print('html:', html)
 # html: <Response [200]>
 
 # print('html.text:', html.text)
 # 打印出html页面
 
-soup = BeautifulSoup(html.text, 'html.parser')
+# soup = BeautifulSoup(html.text, 'html.parser')
 # print('soup:', soup)
 # print('soup.prettify():', soup.prettify())
 # 格式化后的HTML
 
-target = soup.find_all('div', 'info')
+# target = soup.find_all('div', 'info')
 # print('target:', target)
 # [<div class="info"></div>,..] 一个list
 
@@ -163,14 +164,14 @@ target = soup.find_all('div', 'info')
   </div>
 """
 # 循环list
-for item in target:
-    title = item.div.a.span.string
-    year = item.find('div', 'bd').p.contents[2].string
-    year = year.replace(' ', '')   # 去掉这一行的空格
-    year = year.replace('\n', '')  # 去掉这一行的回车换行
-    year = year[0:4]               # 只取年份前四个字符
-    # print('year:\n', year)
-    print(title, '\t', year)
+# for item in target:
+#     title = item.div.a.span.string
+#     year = item.find('div', 'bd').p.contents[2].string
+#     year = year.replace(' ', '')  # 去掉这一行的空格
+#     year = year.replace('\n', '')  # 去掉这一行的回车换行
+#     year = year[0:4]  # 只取年份前四个字符
+#     # print('year:\n', year)
+#     print(title, '\t', year)
 
 """
 肖申克的救赎 	 1994
@@ -183,6 +184,52 @@ for item in target:
 ...
 """
 
+"""
+3. 招聘网站
+"""
+# Python默认发送的请求和浏览器发送的请求是有不同的。最主要的不同就是浏览器发送的请求除了http地址之外还包含了看不到的header头信息。
+
+# 添加请求头
+url = 'https://www.zhipin.com/c101190400/h_101190400/?query=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD&page='
+headers = {
+    'user-agent': 'Mozilla/5.0'
+}
+
+page = 1
+hud = ['职位名', '薪资范围', '地点', '经验', '学历', '公司名称', '公司行业', '融资阶段', '公司人数', '发布人']
+print('\t\t'.join(hud))
+
+for n in range(1, 3):
+    # print('request-url:', url + str(page))
+    html = requests.get(url + str(page), headers=headers)
+    page += 1
+    soup = BeautifulSoup(html.text, 'html.parser')
+    # print('html:', html.text)
+    target_list = soup.find_all('div', 'job-primary')
+    # print('target_list:', target_list)
+    for item in target_list:
+        outPut = []
+        outPut.append(item.find('div', 'job-title').string[0:5])
+
+        salary = item.find('span', 'red').string
+        outPut.append(salary)
+
+        position = item.find('p').contents
+        outPut.append('\t' + position[0].string if len(position) > 0 else 'None')  # 地点
+        outPut.append(position[2].string if len(position) > 2 else 'None')         # 经验
+        outPut.append('\t' + position[4].string if len(position) > 4 else 'None')  # 学历
+
+        outPut.append('\t' + item.find('div', 'company-text').h3.a.get_text())  # 公司名称
+        company = item.find('div', 'info-company').find('p').contents
+        outPut.append('\t' + company[0].string if len(company) > 0 else 'None')  # 公司行业
+        outPut.append('\t' + company[2].string if len(company) > 2 else 'None')  # 融资阶段
+        outPut.append('\t\t' + company[4].string if len(company) > 4 else 'None')  # 公司人数
+
+        outPut.append('\t' + item.find('div', 'info-publis').find('h3').contents[1].string)  # 发布人
+
+        print('\t'.join(outPut))
+        # break
+    time.sleep(1)
 
 """
 Beautiful Soup 4.0 常用方法
@@ -246,6 +293,3 @@ tag.contents 对提取包含文字和标签的元素很有用
 
 
 """
-
-
-
