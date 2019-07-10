@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
+"""
+1. Boss直聘 招聘信息爬取
+"""
 html_doc = """
 <html>
  <head>
@@ -99,7 +102,7 @@ html_doc = """
 """
 
 # soup = BeautifulSoup(html.text, 'html.parser')
-soup = BeautifulSoup(html_doc)
+# soup = BeautifulSoup(html_doc)
 
 # print(soup.prettify())
 
@@ -108,9 +111,10 @@ soup = BeautifulSoup(html_doc)
 
 # print(soup.select('h3.name > a')[0].get('data-jobid'))
 
-print(soup.select('div.info-primary h3 > a')[0].attrs['href'])
+# print(soup.select('div.info-primary h3 > a')[0].attrs['href'])
 # for child in soup.select('div.info-primary p')[0].children:
 #     print(child)
+
 # print(soup.select('div.info-primary p')[0].contents)
 # print(soup.select('div.info-primary p')[0].contents[2])
 # print("soup.select('div.info-company h3 > a')[0].contents:", soup.select('div.info-primary p')[0].contents)
@@ -122,11 +126,83 @@ print(soup.select('div.info-primary h3 > a')[0].attrs['href'])
 
 
 """
+2. 豆瓣电影
+"""
+html = requests.get('https://movie.douban.com/top250?start=0')
+# print('html:', html)
+# html: <Response [200]>
+
+# print('html.text:', html.text)
+# 打印出html页面
+
+soup = BeautifulSoup(html.text, 'html.parser')
+# print('soup:', soup)
+# print('soup.prettify():', soup.prettify())
+# 格式化后的HTML
+
+target = soup.find_all('div', 'info')
+# print('target:', target)
+# [<div class="info"></div>,..] 一个list
+
+"""
+<div class="info"> 
+   <div class="hd"> 
+    <a class="" href="https://movie.douban.com/subject/1292052/"> <span class="title">肖申克的救赎</span> <span class="title">&nbsp;/&nbsp;The Shawshank Redemption</span> <span class="other">&nbsp;/&nbsp;月黑高飞(港) / 刺激1995(台)</span> </a> 
+    <span class="playable">[可播放]</span> 
+   </div> 
+   <div class="bd"> 
+    <p class=""> 导演: 弗兰克&middot;德拉邦特 Frank Darabont&nbsp;&nbsp;&nbsp;主演: 蒂姆&middot;罗宾斯 Tim Robbins /...<br /> 1994&nbsp;/&nbsp;美国&nbsp;/&nbsp;犯罪 剧情 </p> 
+    <div class="star"> 
+     <span class="rating5-t"></span> 
+     <span class="rating_num" property="v:average">9.6</span> 
+     <span content="10.0" property="v:best"></span> 
+     <span>1479131人评价</span> 
+    </div> 
+    <p class="quote"> <span class="inq">希望让人自由。</span> </p> 
+   </div> 
+  </div>
+"""
+# 循环list
+for item in target:
+    title = item.div.a.span.string
+    year = item.find('div', 'bd').p.contents[2].string
+    year = year.replace(' ', '')   # 去掉这一行的空格
+    year = year.replace('\n', '')  # 去掉这一行的回车换行
+    year = year[0:4]               # 只取年份前四个字符
+    # print('year:\n', year)
+    print(title, '\t', year)
+
+"""
+肖申克的救赎 	 1994
+霸王别姬 	 1993
+这个杀手不太冷 	 1994
+阿甘正传 	 1994
+美丽人生 	 1997
+泰坦尼克号 	 1997
+千与千寻 	 2001
+...
+"""
+
+
+"""
+Beautiful Soup 4.0 常用方法
+
+搜索文档树：
+##################################################
+find_all( name , attrs , recursive , text , **kwargs )
+##################################################
+
+
 ##################################################
 find( name , attrs , recursive , text , **kwargs )
 ##################################################
 
+下面两行代码是等价的：
+soup.find_all('title', limit=1)
+# [<title>The Dormouse's story</title>]
 
+soup.find('title')
+# <title>The Dormouse's story</title>
 
 
 ##################################################
@@ -149,6 +225,24 @@ contents 与 children 提取
 ##################################################
 
 print(soup.select('div.info-primary h3 > a')[0].attrs['href'])
+
+
+##################################################
+子节点
+##################################################
+一个Tag可能包含多个字符串或其它的Tag,这些都是这个Tag的子节点.Beautiful Soup提供了许多操作和遍历子节点的属性.
+
+.contents
+tag的 .contents 属性可以将tag的子节点以列表的方式输出:
+
+tag:
+<p class="">
+    导演: 弗兰克·德拉邦特 Frank Darabont&nbsp;&nbsp;&nbsp;主演: 蒂姆·罗宾斯 Tim Robbins /...<br>
+    1994&nbsp;/&nbsp;美国&nbsp;/&nbsp;犯罪 剧情
+</p>
+
+tag.contents 对提取包含文字和标签的元素很有用
+['\n    导演: 弗兰克·德拉邦特 Frank Darabont\xa0\xa0\xa0主演: 蒂姆·罗宾斯 Tim Robbins /...', <br/>, '\n     1994\xa0/\xa0美国\xa0/\xa0犯罪 剧情\n ']
 
 
 """
