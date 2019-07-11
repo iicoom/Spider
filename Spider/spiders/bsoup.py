@@ -196,10 +196,24 @@ headers = {
 }
 
 page = 1
-hud = ['职位名', '薪资范围', '地点', '经验', '学历', '公司名称', '公司行业', '融资阶段', '公司人数', '发布人']
+hud = ['职位名', '薪资范围', '地点', '经验', '学历', '公司名称', '公司行业', '融资阶段', '公司人数', '发布人', '详情']
 print('\t\t'.join(hud))
 
-for n in range(1, 3):
+
+def get_details(link):
+    detail_html = requests.get('https://www.zhipin.com' + link, headers=headers)
+    d_soup = BeautifulSoup(detail_html.text, 'html.parser')
+    print('d_soup:', d_soup)
+    try:
+        desc = d_soup.find('div', 'job-sec').find('div', 'text').text
+        desc = desc.lstrip().rstrip()  # 去除开头和结尾的空格
+    except ValueError:
+        desc = 'None'
+    else:
+        return desc
+
+
+for n in range(1, 2):
     # print('request-url:', url + str(page))
     html = requests.get(url + str(page), headers=headers)
     page += 1
@@ -219,17 +233,22 @@ for n in range(1, 3):
         outPut.append(position[2].string if len(position) > 2 else 'None')         # 经验
         outPut.append('\t' + position[4].string if len(position) > 4 else 'None')  # 学历
 
-        outPut.append('\t' + item.find('div', 'company-text').h3.a.get_text())  # 公司名称
+        outPut.append('\t' + item.find('div', 'company-text').h3.a.get_text())     # 公司名称
         company = item.find('div', 'info-company').find('p').contents
-        outPut.append('\t' + company[0].string if len(company) > 0 else 'None')  # 公司行业
-        outPut.append('\t' + company[2].string if len(company) > 2 else 'None')  # 融资阶段
+        outPut.append('\t' + company[0].string if len(company) > 0 else 'None')    # 公司行业
+        outPut.append('\t' + company[2].string if len(company) > 2 else 'None')    # 融资阶段
         outPut.append('\t\t' + company[4].string if len(company) > 4 else 'None')  # 公司人数
 
         outPut.append('\t' + item.find('div', 'info-publis').find('h3').contents[1].string)  # 发布人
 
+        # 读取每个职位的详细信息页面
+        link = item.find('div', 'info-primary').find('h3').find('a')['href']
+        detail = get_details(link)
+        outPut.append(detail)
+
         print('\t'.join(outPut))
         # break
-    time.sleep(1)
+        time.sleep(1)
 
 """
 Beautiful Soup 4.0 常用方法
