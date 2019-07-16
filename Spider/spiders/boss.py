@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 
 import peewee as pw
 
-myDB = pw.MySQLDatabase(host='47.94.91.128', port=33306, user='mysql', passwd='123456', database='psych')
-# myDB = pw.MySQLDatabase(host='47.94.91.128', port=33306, user='mysql', passwd='123456', database='maot')
+myDB = pw.MySQLDatabase(host='47.94.xx.oo8', port=33306, user='mysql', passwd='123456', database='psych')
+# myDB = pw.MySQLDatabase(host='47.94.xx.oo8', port=33306, user='mysql', passwd='123456', database='maot')
 
 class MySQLModel(pw.Model):
     """A base model that will use our MySQL database"""
