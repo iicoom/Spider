@@ -63,7 +63,7 @@ for i in range(1, 11):
             comment_num = 0 if item.find('span', 'stats-comments').i is None else item.find('span',
                                                                                             'stats-comments').i.string
             content = item.find('div', 'content').span.get_text().lstrip().rstrip()
-            print
+
             data_source.append(
                 {'avatar': avatar, 'username': username, 'age': age, 'sex': sex, 'praise_num': praise_num,
                  'comment_num': comment_num, 'content': content})
