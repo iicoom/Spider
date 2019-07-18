@@ -1,6 +1,6 @@
-from .proxypool.db import RedisClient
+from .db import RedisClient
 from .proxy_spider import Crawler
-from .proxypool.setting import *
+from .setting import *
 import sys
 
 
