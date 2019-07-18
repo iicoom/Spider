@@ -31,3 +31,5 @@ TEST_URL = 'http://www.baidu.com'
 API_HOST = '0.0.0.0'
 API_PORT = 5555
 
+BATCH_TEST_SIZE = 5
+
